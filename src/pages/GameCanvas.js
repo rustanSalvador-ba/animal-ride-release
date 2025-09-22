@@ -626,8 +626,8 @@ let playersFiltered = removePlayersById(players, "MultPlayer"+idPlayer)
 
     }, [myPlayerId, players]); // Depende de players e myPlayerId
 
-    return (isClient&&<html lang="en">
-        <Head/>
+    return (isClient&&
+    <div>
         <NavBar/>
          <span style={{Color: "greem"}}>SALA: {idSessao}</span>
          <Chat id={{idSessao}} stage={{me}} playername={{mainPlayer}} idPlayer={{idPlayer}}></Chat>
@@ -636,7 +636,8 @@ let playersFiltered = removePlayersById(players, "MultPlayer"+idPlayer)
          </div>
          <GamePad name="" element={getDocument()} idPlayer={{idPlayer}} playername={{mainPlayer}}/>
          <Footer name="Room"/>
-         </html>)
+    </div>
+        )
 };
 function getDocument() {
   if (typeof document === 'undefined'){

@@ -14,12 +14,10 @@ export default function Rooms () {
   return(<></>)
   else
     return (
-    <html>
-        <Head/>
-        <body>
-            <NavBar/>
-            <Footer name="About"/>
-        </body>
-    </html>
+   <div>
+      <NavBar/>
+      <Footer name="About"/>
+   </div>
     )
+     
 }

@@ -114,10 +114,7 @@ function add(e) {
     if (!isClient)
      return(<></>)
     else
-     return (
-    <html lang="en">
-    <Head/>
-        <body>
+     return (<div>
             <NavBar/>
              <div id='salas'>
                <span className='pull-left' style={{marginRight:'10px'}}> <h3>Roons On-line</h3></span><span style={{paddingTop:'25px'}} onClick={()=>showInputNewRoom()}  className={newRoomShow ? "glyphicon glyphicon-plus online":"glyphicon glyphicon-minus online"}> </span>
@@ -153,7 +150,6 @@ function add(e) {
                   <PlayerLabel name="mainPlayerDark" onClick={(e)=>setMainPlayer("mainPlayerDark")}></PlayerLabel>
                 </div>
                <Footer/>
-        </body>
-    </html>)
+               </div>)
 }
 

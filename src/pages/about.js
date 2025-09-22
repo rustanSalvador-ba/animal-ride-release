@@ -15,13 +15,10 @@ export default function About () {
   return(<>Aguarde..</>)
   else
     return (
-    <html>
-        <Head/>
-        <body>
-            <NavBar/>
-            <div className='text-center'>Em construção...</div>
-            <Footer name="About"/>
-        </body>
-    </html>
+<div>
+    <NavBar/>
+    <div className='text-center'>Em construção...</div>
+    <Footer name="About"/>
+</div>
     )
 }

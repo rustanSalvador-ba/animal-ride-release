@@ -22,9 +22,7 @@ export default function Login() {
   return(<>Aguarde..</>)
   else
     return (
-  <html>
-  <Head/>
-  <body>
+<div>
   <NavBar/>
     <div className="painel_login">
       <form role="form" id="form-login" /> <br/>
@@ -52,7 +50,6 @@ export default function Login() {
         </div>
       </div>
       <Footer name="Login"/>
-    </body>
-  </html>
+ </div>
 )
   }

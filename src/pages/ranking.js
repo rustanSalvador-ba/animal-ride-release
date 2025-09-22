@@ -18,9 +18,7 @@ export default function Ranking () {
   return(<>Aguarde..</>)
   else
     return (
-  <html>
-  <Head/>
-  <body>
+<div>
   <NavBar/>
   <div className="container">
         <h2>Players</h2>
@@ -53,7 +51,6 @@ export default function Ranking () {
         </table>
     </div>
       <Footer name="Ranking"/>
-    </body>
-  </html>
+  </div>
 )
   }
