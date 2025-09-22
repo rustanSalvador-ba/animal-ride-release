@@ -9,23 +9,24 @@ import DataManifest from '../../manifest';
 import PlayScreen from '../../js/stage/play.js';
 import {PlayerEntity, CoinEntity, EnemyEntity, MultPlayerEntity, EmptyEntity, MultPlayerEntitySnow, MultPlayerEntityNina, MultPlayerEntityTeff, MultPlayerEntityDark} from '../../js/renderables/entities.js';
 import io from 'socket.io-client';
+import dynamic from 'next/dynamic';
+
 
 const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
     const canvasRef = useRef(null);
+    const initialized = useRef(false);
     const [mainPlayer, setMainPlayer] = useState([])
     let myPlayerEntity = null; // Para manter a referência ao jogador local
-    const playerEntities = ["mainPlayer", "mainPlayerTeff", "mainPlayerSnow", "mainPlayerDark"];
-    const multiplayerEntities = ["multPlayerNina", "multPlayerTeff", "multPlayerSnow", "multPlayerDark"];
+  
     const [isClient, setIsClient] = useState(false)
     const [idSessao, setIdSessao] = useState("0")
     const [idPlayer, setIdPlayer] = useState(myPlayerId)
-    const socket = io(`http://${window.location.hostname}:3001`, {
-      reconnectionAttempts: 5,
-  reconnectionDelay: 1000,
-  timeout: 2000});
+    const socket = io(`http://${typeof window !== 'undefined' ? window.location.hostname:'localhost'}:3001`);
 
+   
     function getQueryVariable(variable) {
-    var query = window.location.search.substring(1);
+
+      var query = window.location.search.substring(1);
     var vars = query.split("&");
         for (var i=0;i<vars.length;i++) {
         var pair = vars[i].split("=");
@@ -36,7 +37,30 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
     }
 
      useEffect(() => {
-       // window.$ = window.jQuery = require('jquery')
+     const playerEntities = ["mainPlayer", "mainPlayerTeff", "mainPlayerSnow", "mainPlayerDark"];
+     const multiplayerEntities = ["multPlayerNina", "multPlayerTeff", "multPlayerSnow", "multPlayerDark"];
+        // Prevent duplicate initialization
+        if (initialized.current) return;
+        initialized.current = true;
+       
+
+        // Cleanup function to stop game and remove canvas on unmount
+        const cleanup = () => {
+         
+            if (me.state.isRunning()) {
+                me.state.stop();
+                const canvas = document.querySelector('canvas');
+                if (canvas) {
+                    canvas.remove();
+                }
+            }
+        };
+
+        if (typeof window !== 'undefined') {
+          //window.$ = window.jQuery = require('jquery')
+           
+        }
+
         const pathname = window.location.pathname.split("/animal-ride/rooms/")[1];
         var param = getQueryVariable("player");
         var mode = getQueryVariable("mode");
@@ -44,12 +68,21 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
         setIsClient(true)
         setMainPlayer(param)
 
+        // Remove any existing canvas
+        cleanup();
+
         me.device.onReady(() => {
-          
-         if (!me.video.init(1040, 1080,  {parent : "screen", scale : "auto"})) {
-             //swal("Your browser does not support HTML5 canvas.");
-             return;
-         } 
+         
+          // Clear any existing canvas first
+          const existingCanvas = document.querySelector('#screen canvas');
+          if (existingCanvas) {
+              existingCanvas.remove();
+          }
+
+          if (!me.video.init(1040, 1080,  {parent : "screen", scale : "auto"})) {
+              console.error("Your browser does not support HTML5 canvas.");
+              return;
+          } 
  
 
          me.loader.preload(DataManifest, function() {
@@ -100,12 +133,12 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
               me.input.bindKey(multiControlsNina.RIGHT, "mp-right-nina");
               me.input.bindKey(multiControlsNina.JUMP, "mp-jump-nina", false);
 
-              document.addEventListener('keyleft', (event) => {
+             document.addEventListener('keyleft', (event) => {
                 me.input.triggerKeyEvent(me.input.KEY.LEFT, true);
                 enviarMovimento("LEFT")
               });
 
-              document.addEventListener('keyright', (event) => {
+             document.addEventListener('keyright', (event) => {
                 enviarMovimento("RIGHT")
                 me.input.triggerKeyEvent(me.input.KEY.RIGHT, true);
                 
@@ -119,7 +152,7 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
                 me.input.triggerKeyEvent(me.input.KEY.LEFT, false);
               });
               
-              document.addEventListener('up', (event) => {
+             document.addEventListener('up', (event) => {
                 console.log("KEYUP")
                 me.input.triggerKeyEvent(me.input.KEY.UP, true);
                 //enviarMovimento("UP")
@@ -128,31 +161,31 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
                }, 500)
               });
 
-              document.addEventListener('mp-keyleft', (event) => {
+             document.addEventListener('mp-keyleft', (event) => {
                 me.input.triggerKeyEvent(me.input.KEY.J, true);
 
               });
 
-              document.addEventListener('mp-keyright', (event) => {
+             document.addEventListener('mp-keyright', (event) => {
                 me.input.triggerKeyEvent(me.input.KEY.L, true);
               });
 
-              document.addEventListener('mp-keyrightStop', (event) => {
+             document.addEventListener('mp-keyrightStop', (event) => {
                 me.input.triggerKeyEvent(me.input.KEY.L, false);
               });
 
-              document.addEventListener('mp-keyleftStop', (event) => {
+             document.addEventListener('mp-keyleftStop', (event) => {
                 me.input.triggerKeyEvent(me.input.KEY.J, false);
               });
               
-              document.addEventListener('mp-keyup', (event) => {
+             document.addEventListener('mp-keyup', (event) => {
                 me.input.triggerKeyEvent(me.input.KEY.I, true);
                setTimeout(() => { 
                 me.input.triggerKeyEvent(me.input.KEY.I, false);
                }, 500)
               });
 
-              document.addEventListener("keyup", (event) => {
+             document.addEventListener("keyup", (event) => {
                if (event.key=="ArrowUp" || event.key=="w")
                 enviarMovimento("UP")
                
@@ -223,7 +256,7 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
 
             
          })
-     });
+     },[]);
 
 function getMultiplayerControls() {
     return {
@@ -583,7 +616,7 @@ let playersFiltered = removePlayersById(players, "MultPlayer"+idPlayer)
             // Limpeza do MelonJS ao desmontar o componente
            // me.video.destroy();
         };
-    }, []); // Executa apenas uma vez na montagem
+    }, [idPlayer, myPlayerId, players, socket]); // Executa apenas uma vez na montagem
 
     // Atualiza a tela de jogo quando as props 'players' mudam
     useEffect(() => {
@@ -591,7 +624,7 @@ let playersFiltered = removePlayersById(players, "MultPlayer"+idPlayer)
           me.state.current().onResetEvent(); // Re-renderiza jogadores
         }
 
-    }, [players, myPlayerId]); // Depende de players e myPlayerId
+    }, [myPlayerId, players]); // Depende de players e myPlayerId
 
     return (isClient&&<html lang="en">
         <Head/>
@@ -601,9 +634,16 @@ let playersFiltered = removePlayersById(players, "MultPlayer"+idPlayer)
          <div id='container'>
              <div id="screen"></div>
          </div>
-         <GamePad name="" element={document} idPlayer={{idPlayer}} playername={{mainPlayer}}/>
+         <GamePad name="" element={getDocument()} idPlayer={{idPlayer}} playername={{mainPlayer}}/>
          <Footer name="Room"/>
          </html>)
 };
+function getDocument() {
+  if (typeof document === 'undefined'){
+    return null;
+  } else {
+    return document;
+  }
+}
 
-export default GameCanvas;
+export default dynamic(() => Promise.resolve(GameCanvas), { ssr: false });
