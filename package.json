@@ -5,16 +5,15 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "server": "nodemon sala.js",
-    "wave": "concurrently --raw \"npm run dev\" \"npm run server\""
+    "start": "concurrently --raw \"npm run dev\" \"npm run server\"", 
+    "server": "nodemon sala.js"
   },
     "dependencies": {
     "bootstrap": "^3.3.7",
     "express": "^4.18.2",
     "handy-storage": "^2.1.6",
     "melonjs": "^17.0.0",
-    "next": "^15.5.3",
+    "next": "^14",
     "react": "^18",
     "react-bootstrap": "^2.10.8",
     "react-dom": "^18",

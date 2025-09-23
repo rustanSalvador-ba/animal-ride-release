@@ -8,7 +8,7 @@ let playerName = props.playername;
 let element: Document = props.element
 let idPlayer= props.idPlayer
 let movimentoAtual: String = ""
- const socket = io(`http://${window.location.hostname}:3001`);
+ const socket = io(`https://${window.location.hostname}:3001`);
 
 function selectEvent(id: string) {
 

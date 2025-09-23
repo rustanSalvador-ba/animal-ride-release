@@ -53,7 +53,7 @@ function App() {
         
         setMode(modo)
         setMainPlayer(param)
-        const socket = io(`http://${window.location.hostname}:3001`);
+        const socket = io(`https://${window.location.hostname}:3001`);
          
           
            socket.on('connect', () => {

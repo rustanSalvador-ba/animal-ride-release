@@ -23,7 +23,7 @@ export default function AnimalRide () {
   useEffect(() => {
    // window.$ = window.jQuery = require('jquery')
    
-    const socket = io(`http://${window.location.hostname}:3001`);
+    const socket = io(`https://${window.location.hostname}:3001`);
     socket.on('connect', () => {
     console.log('Conectado ao servidor de jogo');
     })
@@ -48,7 +48,7 @@ export default function AnimalRide () {
   
 
 function sendNewSala(nome) {
-const socket = io(`http://${window.location.hostname}:3001`);
+const socket = io(`https://${window.location.hostname}:3001`);
     socket.on('connect', () => {
     console.log('Conectado ao servidor de jogo');
     })
