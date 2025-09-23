@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "concurrently --raw \"npm run dev\" \"npm run server\"", 
+    "start": "nodemon sala.js", 
     "server": "nodemon sala.js"
   },
     "dependencies": {
