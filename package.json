@@ -5,10 +5,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "concurrently --raw \"npm run dev\" \"npm run server\"", 
+    "start": "concurrently --raw \"npm run dev\" \"npm run server\"",
     "server": "nodemon sala.js"
   },
-    "dependencies": {
+  "dependencies": {
     "bootstrap": "^3.3.7",
     "express": "^4.18.2",
     "handy-storage": "^2.1.6",
@@ -30,6 +30,8 @@
     "@types/react-dom": "^18",
     "@types/ws": "^8.5.13",
     "concurrently": "^9.1.2",
-    "nodemon": "^3.1.9"
+    "nodemon": "^3.1.9",
+    "serverless-http": "^3.2.0",
+    "typescript": "^5.9.2"
   }
 }

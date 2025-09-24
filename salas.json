@@ -1,4 +1,4 @@
 {
-    "salas": [ { "id": 1, "name": "SALA00011" } ],
-    "idSessao": 1
+    "salas": [ { "id": 1, "name": "0001" } ,{ "id": 2, "name": "0002" }],
+    "idSessao": 2
 }

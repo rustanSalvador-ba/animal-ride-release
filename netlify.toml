@@ -1,0 +1,9 @@
+[functions]
+external_node_modules = ["express", "socket.io", "handy-storage", "serverless-http"]
+node_bundler = "esbuild"
+
+[[redirects]]
+from = "/socket.io/*"
+to = "/.netlify/functions/gameServer"
+status = 200
+force = true
