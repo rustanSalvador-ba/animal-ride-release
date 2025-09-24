@@ -15,6 +15,16 @@ export default function Login() {
   useEffect(() => {
   //if (typeof document !== 'undefined')
   // window.$ = window.jQuery = require('jquery')
+   (async ()=>{
+      try{
+        const result = await fetch('/.netlify/functions/fetch-products');
+        const resultJSON = await result.json();
+      
+        console.log(resultJSON);
+      } catch (err){
+        console.log('Failed to do netlify function', err);
+      }
+    })();
     setIsClient(true)
   }, [])
 

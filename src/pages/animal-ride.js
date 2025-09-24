@@ -48,7 +48,9 @@ export default function AnimalRide () {
   
 
 function sendNewSala(nome) {
-const socket = io(`https://salajs.netlify.app:3001`);
+    const socket = io(`https://salajs.netlify.app`,{
+        timeout: 90000
+    });
     socket.on('connect', () => {
     console.log('Conectado ao servidor de jogo');
     })

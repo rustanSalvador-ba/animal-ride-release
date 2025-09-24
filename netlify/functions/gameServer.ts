@@ -91,4 +91,4 @@ function getMultplayerName(player: string): string {
   }
 }
 
-export const handler = serverless(app);
+export const gameServer = serverless(app);

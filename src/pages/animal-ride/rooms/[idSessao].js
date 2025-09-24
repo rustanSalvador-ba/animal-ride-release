@@ -53,7 +53,7 @@ function App() {
         
         setMode(modo)
         setMainPlayer(param)
-        const socket = io(`https://salajs.netlify.app:3001`,{
+        const socket = io(`https://salajs.netlify.app`,{
             timeout: 90000
         });
          

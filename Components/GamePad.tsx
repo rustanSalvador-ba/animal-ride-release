@@ -132,7 +132,7 @@ const GamePad: React.FC<GamePadProps> = ({ name = 'Animal Ride', playername, ele
   const movimentoAtualRef = useRef<string>('');
 
   useEffect(() => {
-    socketRef.current = io('https://salajs.netlify.app:3001');
+    socketRef.current = io('https://salajs.netlify.app');
 
     return () => {
       socketRef.current?.disconnect();

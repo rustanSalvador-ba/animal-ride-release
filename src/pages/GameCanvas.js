@@ -10,9 +10,6 @@ import PlayScreen from '../../js/stage/play.js';
 import { PlayerEntity, CoinEntity, EnemyEntity, MultPlayerEntity, EmptyEntity, MultPlayerEntitySnow, MultPlayerEntityNina, MultPlayerEntityTeff, MultPlayerEntityDark } from '../../js/renderables/entities.js';
 import io from 'socket.io-client';
 import dynamic from 'next/dynamic';
-import CanvasRenderer from '../../Components/CanvasRenderer';
-import useSocket from '../../Components/SocketManager';
-import useGameLogic from '../../Components/GameLogic';
 
 
 const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
@@ -24,8 +21,9 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
   const [isClient, setIsClient] = useState(false)
   const [idSessao, setIdSessao] = useState("0")
   const [idPlayer, setIdPlayer] = useState(myPlayerId)
-  const socket = io(`https://${typeof window !== 'undefined' ? window.location.hostname : 'localhost'}:3001`);
-
+  //const socket = io(`https://https://salajs.netlify.app/:3001`);
+const socket = fetch('/.netlify/functions/gameServer');
+//const socket = result.json();
 
 
 
