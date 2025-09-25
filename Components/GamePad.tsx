@@ -9,10 +9,9 @@ let element: Document = props.element
 let idPlayer= props.idPlayer
 let movimentoAtual: String = ""
     const socket = io(`https://salajs.netlify.app:3001`,{
-               timeout: 999990000,
-               transports: ["websocket"],
-               withCredentials: true
-           });
+                transports: ["polling"],
+                withCredentials: true
+            });
          
 function selectEvent(id: string) {
 

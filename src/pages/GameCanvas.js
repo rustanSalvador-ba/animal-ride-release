@@ -22,10 +22,9 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
   const [idSessao, setIdSessao] = useState("0")
   const [idPlayer, setIdPlayer] = useState(myPlayerId)
     const socket = io(`https://salajs.netlify.app:3001`,{
-            timeout: 999990000,
-            transports: ["websocket"],
-            withCredentials: true
-        });
+                transports: ["polling"],
+                withCredentials: true
+            });
          
 //const socket = fetch('/.netlify/functions/gameServer');
 //const socket = result.json();
