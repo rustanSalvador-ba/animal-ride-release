@@ -16,11 +16,11 @@ export default function Chat(props:any) {
   const [idPlayer, setIdPlayer] = useState(props.idPlayer)
   let spanWidth:number = 1;
  // let cliente = new WebSocket('ws://localhost:4999')
-    const socket = io(`https://salajs.netlify.app:3001`,{
-             timeout: 9990000,
-             tryAllTransports: true,
-             withCredentials: true
-         });
+     const socket = io(`https://salajs.netlify.app:3001`,{
+                timeout: 999990000,
+                transports: ["websocket"],
+                withCredentials: true
+            });
           
   useEffect(() => {
       if (socket != null) {

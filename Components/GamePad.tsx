@@ -8,11 +8,11 @@ let playerName = props.playername;
 let element: Document = props.element
 let idPlayer= props.idPlayer
 let movimentoAtual: String = ""
-   const socket = io(`https://salajs.netlify.app:3001`,{
-            timeout: 9990000,
-            tryAllTransports: true,
-            withCredentials: true
-        });
+    const socket = io(`https://salajs.netlify.app:3001`,{
+               timeout: 999990000,
+               transports: ["websocket"],
+               withCredentials: true
+           });
          
 function selectEvent(id: string) {
 

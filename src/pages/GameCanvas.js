@@ -21,9 +21,9 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
   const [isClient, setIsClient] = useState(false)
   const [idSessao, setIdSessao] = useState("0")
   const [idPlayer, setIdPlayer] = useState(myPlayerId)
-    const socket = io(`https://salajs.netlify.app`,{
+    const socket = io(`https://salajs.netlify.app:3001`,{
             timeout: 999990000,
-            tryAllTransports: true,
+            transports: ["websocket"],
             withCredentials: true
         });
          
