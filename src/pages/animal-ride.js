@@ -50,9 +50,7 @@ export default function AnimalRide () {
 function sendNewSala(nome) {
     const socket = io(`https://salajs.netlify.app`,{
         timeout: 90000,
-        headers: {
-                "Access-Control-Allow-Origin": "https://animal-ride.netlify.app/"
-        },
+        tryAllTransports: true,
         withCredentials: true
     });
     socket.on('connect', () => {

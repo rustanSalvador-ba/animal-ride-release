@@ -23,9 +23,7 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
   const [idPlayer, setIdPlayer] = useState(myPlayerId)
   const socket = io(`https://salajs.netlify.app`, {
             timeout: 90000,
-            headers: {
-                "Access-Control-Allow-Origin": "https://animal-ride.netlify.app/"
-            },
+            tryAllTransports: true,
             withCredentials: true
         });
 //const socket = fetch('/.netlify/functions/gameServer');

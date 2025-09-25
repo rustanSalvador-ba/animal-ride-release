@@ -53,11 +53,10 @@ function App() {
         
         setMode(modo)
         setMainPlayer(param)
-        const socket = io(`https://salajs.netlify.app`,{
+        console.log("TESTE CONEXAO:")
+        const socket = io(`https://salajs.netlify.app:3001`,{
             timeout: 90000,
-            headers: {
-                "Access-Control-Allow-Origin": "https://animal-ride.netlify.app/"
-            },
+            tryAllTransports: true,
             withCredentials: true
         });
          

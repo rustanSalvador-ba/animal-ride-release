@@ -18,7 +18,8 @@ export default function Chat(props:any) {
  // let cliente = new WebSocket('ws://localhost:4999')
  const socket = io(`https://salajs.netlify.app`,{
             timeout: 90000,
-            withCredentials: true
+            withCredentials: true,
+            tryAllTransports: true
         });
 
   useEffect(() => {
