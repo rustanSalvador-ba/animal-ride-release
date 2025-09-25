@@ -21,7 +21,22 @@ const io = new Server(server, {
     cors: {
         origin: "https://animal-ride.netlify.app/", // Permitir todas as origens para desenvolvimento
         methods: ["GET"],
-        credentials: true
+        credentials: true,
+         allowedHeaders: [
+          "Content-Type",
+          "AccessKey",
+          "st-auth-mode",
+          "rid",
+          "x-file-name",
+          "x-start-byte",
+          "x-end-byte",
+          "x-total-size",
+          "content-type",
+          "Access-Control-Max-Age",
+          "Access-Control-Allow-Origin",
+          "Access-Control-Allow-Methods",
+          "Access-Control-Allow-Headers",
+    ],
     }
   }
 );
