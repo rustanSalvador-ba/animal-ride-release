@@ -8,12 +8,12 @@ let playerName = props.playername;
 let element: Document = props.element
 let idPlayer= props.idPlayer
 let movimentoAtual: String = ""
-const socket = io('https://salajs.netlify.app',{
-            timeout: 90000,
-            withCredentials: true,
-            tryAllTransports: true
+   const socket = io(`https://salajs.netlify.app:3001`,{
+            timeout: 9990000,
+            tryAllTransports: true,
+            withCredentials: true
         });
-
+         
 function selectEvent(id: string) {
 
     let button = document.getElementById(id);

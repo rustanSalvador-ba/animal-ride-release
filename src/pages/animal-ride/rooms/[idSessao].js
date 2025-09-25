@@ -55,7 +55,7 @@ function App() {
         setMainPlayer(param)
         console.log("TESTE CONEXAO:")
         const socket = io(`https://salajs.netlify.app:3001`,{
-            timeout: 90000,
+            timeout: 9990000,
             tryAllTransports: true,
             withCredentials: true
         });
