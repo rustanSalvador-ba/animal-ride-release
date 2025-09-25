@@ -26,11 +26,6 @@ const io = new Server(server, {
     const header={'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type , Authorization'};
     res.writeHead(200, header);
     res.end();
-  },
-  cors: {
-    origin: ["https://salajs.netlify.app", "https://animal-ride.netlify.app"], // Permitir todas as origens para desenvolvimento
-    methods: ["GET", "POST"],
-    credentials: true
   }
 }
 );
