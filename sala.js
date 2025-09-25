@@ -23,10 +23,10 @@ const server = http.createServer(app);
 
 const io = new Server(server, { 
     cors: {
-        origin: ["https://salajs.netlify.app", process.env.REACT_APP_ENDPOINT], // Permitir todas as origens para desenvolvimento
-        methods: ["GET", "POST"]
-    },
-     credentials: true
+        origin: ["https://salajs.netlify.app", "https://animal-ride.netlify.app"], // Permitir todas as origens para desenvolvimento
+        methods: ["GET", "POST"],
+        credentials: true
+    }
   }
 );
 
