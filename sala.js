@@ -20,7 +20,7 @@ const server = http.createServer(app);
 const io = new Server(server, { 
     cors: {
         origin: "*", // Permitir todas as origens para desenvolvimento
-        methods: ["GET", "POST"]
+        methods: ["GET"]
     }
   }
 );

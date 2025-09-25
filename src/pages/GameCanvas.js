@@ -21,8 +21,14 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
   const [isClient, setIsClient] = useState(false)
   const [idSessao, setIdSessao] = useState("0")
   const [idPlayer, setIdPlayer] = useState(myPlayerId)
-  //const socket = io(`https://https://salajs.netlify.app/:3001`);
-const socket = fetch('/.netlify/functions/gameServer');
+  const socket = io(`https://salajs.netlify.app`, {
+            timeout: 90000,
+            headers: {
+                "Access-Control-Allow-Origin": "https://animal-ride.netlify.app/"
+            },
+            withCredentials: true
+        });
+//const socket = fetch('/.netlify/functions/gameServer');
 //const socket = result.json();
 
 
