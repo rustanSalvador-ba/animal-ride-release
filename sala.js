@@ -15,15 +15,18 @@ const http = require('http');
 const { Server } = require('socket.io');
 
 const app = express();
+const cors = require('cors');
+
+app.use(cors({ origin: process.env.REACT_APP_ENDPOINT || '*' }));
+
 const server = http.createServer(app);
-const eiows = require("eiows");
+
 const io = new Server(server, { 
     cors: {
-        origin: ["https://salajs.netlify.app", "https://animal-ride.netlify.app"], // Permitir todas as origens para desenvolvimento
-        methods: ["GET", "POST"],
-        credentials: true,
-        wsEngine: eiows.Server
-    }
+        origin: ["https://salajs.netlify.app", process.env.REACT_APP_ENDPOINT], // Permitir todas as origens para desenvolvimento
+        methods: ["GET", "POST"]
+    },
+     credentials: true
   }
 );
 
