@@ -24,13 +24,15 @@ const server = http.createServer(app);
 const io = new Server(server, { 
   handlerPreFlyghtRequest: (req, res) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET'); },
-    cors: {
-        origin: ["https://salajs.netlify.app", "https://animal-ride.netlify.app"], // Permitir todas as origens para desenvolvimento
-        methods: ["GET", "POST"],
-        credentials: true
-    }
+    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    res.end();
+  },
+  cors: {
+    origin: ["https://salajs.netlify.app", "https://animal-ride.netlify.app"], // Permitir todas as origens para desenvolvimento
+    methods: ["GET", "POST"],
+    credentials: true
   }
+}
 );
 
 // const io = new Server(server, {
