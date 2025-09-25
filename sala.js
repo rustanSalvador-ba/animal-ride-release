@@ -16,19 +16,13 @@ const { Server } = require('socket.io');
 
 const app = express();
 const server = http.createServer(app);
-
+const eiows = require("eiows");
 const io = new Server(server, { 
     cors: {
         origin: ["https://salajs.netlify.app", "https://animal-ride.netlify.app"], // Permitir todas as origens para desenvolvimento
         methods: ["GET", "POST"],
         credentials: true,
-         allowedHeaders: [
-         "accept",
-         "sec-ch-ua",
-         "sec-ch-ua-mobile",
-         "sec-ch-ua-platform",
-         "Referer"
-    ],
+        wsEngine: eiows.Server
     }
   }
 );

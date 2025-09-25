@@ -5,11 +5,12 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "nodemon sala.js", 
+    "start": "nodemon sala.js",
     "server": "nodemon sala.js"
   },
-    "dependencies": {
+  "dependencies": {
     "bootstrap": "^3.3.7",
+    "eiows": "^4.1.2",
     "express": "^4.18.2",
     "handy-storage": "^2.1.6",
     "melonjs": "^17.0.0",
@@ -29,7 +30,6 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/ws": "^8.5.13",
-    "concurrently": "^9.1.2",
     "nodemon": "^3.1.9"
   }
 }
