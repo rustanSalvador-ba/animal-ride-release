@@ -23,8 +23,8 @@ const server = http.createServer(app);
 
 const io = new Server(server, { 
   handlerPreFlyghtRequest: (req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'GET');
+    const header={'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type , Authorization'};
+    res.writeHead(200, header);
     res.end();
   },
   cors: {
