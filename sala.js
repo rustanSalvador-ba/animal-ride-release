@@ -20,7 +20,8 @@ const server = http.createServer(app);
 const io = new Server(server, { 
     cors: {
         origin: "https://animal-ride.netlify.app/", // Permitir todas as origens para desenvolvimento
-        methods: ["GET"]
+        methods: ["GET"],
+        credentials: true
     }
   }
 );
@@ -31,12 +32,8 @@ const io = new Server(server, {
 const players = {}; // Objeto para armazenar informações dos jogadores
 const gameState = {}; // Objeto para armazenar o estado atual do jogo
 
-io.engine.on("connection", (rawSocket) => {
-  rawSocket.request = null;
-});
-
 io.on('connection', (socket) => {
-socket.setMaxListeners(99999999)
+socket.setMaxListeners(999999)
 
     socket.on('playerMovement', (movementData) => {
        let data = JSON.parse(movementData)
