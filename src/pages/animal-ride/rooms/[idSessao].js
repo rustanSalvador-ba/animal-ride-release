@@ -53,8 +53,7 @@ function App() {
         
         setMode(modo)
         setMainPlayer(param)
-        console.log("TESTE CONEXAO:")
-        const socket = io(`https://animal-ride-release-production.up.railway.app`,{
+        const socket = io(process.env.SALA_APP_ENDPOINT,{
             timeout: 900000,
             transports: ["polling"],
             withCredentials: true

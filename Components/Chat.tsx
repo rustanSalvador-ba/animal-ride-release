@@ -16,7 +16,7 @@ export default function Chat(props:any) {
   const [idPlayer, setIdPlayer] = useState(props.idPlayer)
   let spanWidth:number = 1;
  // let cliente = new WebSocket('ws://localhost:4999')
-     const socket = io(`https://animal-ride-release-production.up.railway.app`,{
+     const socket = io(process.env.SALA_APP_ENDPOINT,{
                  transports: ["polling"],
                  withCredentials: true
              });
