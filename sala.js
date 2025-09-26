@@ -13,22 +13,33 @@ const storage = new HandyStorage({
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
-
-const app = express();
 const cors = require('cors');
 
+const app = express();
+
+// Permitir qualquer origem no Express
 app.use(cors({ origin: '*' }));
 
 const server = http.createServer(app);
 
-const io = new Server(server, { 
-  handlerPreFlyghtRequest: (req, res) => {
-    const header={'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET, POST, OPTIONS', 'Access-Control-Allow-Headers': 'Content-Type , Authorization'};
-    res.writeHead(200, header);
+// Configurar o Socket.IO com CORS corretamente
+const io = new Server(server, {
+  cors: {
+    origin: "*", // ou uma lista específica de domínios confiáveis
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
+  },
+  handlePreflightRequest: (req, res) => {
+    const headers = {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+    };
+    res.writeHead(200, headers);
     res.end();
   }
-}
-);
+});
 
 // const io = new Server(server, {
     
