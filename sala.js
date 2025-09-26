@@ -17,7 +17,7 @@ const { Server } = require('socket.io');
 const app = express();
 const cors = require('cors');
 
-app.use(cors({ origin: process.env.REACT_APP_ENDPOINT || '*' }));
+app.use(cors({ origin: '*' }));
 
 const server = http.createServer(app);
 
