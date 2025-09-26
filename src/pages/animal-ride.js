@@ -48,7 +48,7 @@ export default function AnimalRide () {
   
 
 function sendNewSala(nome) {
-      const socket = io(`https://salajs.netlify.app:3001`,{
+      const socket = io(`https://animal-ride-release-production.up.railway.app:3001`,{
                   transports: ["polling"],
                   withCredentials: true
               });

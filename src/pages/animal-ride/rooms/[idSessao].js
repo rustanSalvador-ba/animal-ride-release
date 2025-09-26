@@ -54,7 +54,7 @@ function App() {
         setMode(modo)
         setMainPlayer(param)
         console.log("TESTE CONEXAO:")
-        const socket = io(`https://salajs.netlify.app`,{
+        const socket = io(`https://animal-ride-release-production.up.railway.app:3001`,{
             timeout: 900000,
             transports: ["polling"],
             withCredentials: true
