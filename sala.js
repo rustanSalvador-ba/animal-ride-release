@@ -25,14 +25,14 @@ const server = http.createServer(app);
 // Configurar o Socket.IO com CORS corretamente
 const io = new Server(server, {
   cors: {
-    origin: "*", // ou uma lista específica de domínios confiáveis
+    origin: "https://animal-ride.netlify.app", // ou uma lista específica de domínios confiáveis
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
   },
   handlePreflightRequest: (req, res) => {
     const headers = {
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': 'https://animal-ride.netlify.app',
       'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type, Authorization',
     };
