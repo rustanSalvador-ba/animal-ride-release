@@ -108,14 +108,13 @@ function triggerEvent(type:string, e: MouseEvent) {
     }
 }
 
-  return <div className='text-center col-md-12' style={{bottom:50, position: 'fixed'}}>
-            <div className='text-center col-md-12'>
-                 <button id="up" className='btn btn-primary' onClick={(e)=>triggerEvent('up', e.nativeEvent)}  >Up</button>
+  return <div className='text-center' style={{bottom:50, position: 'fixed'}}>
+            <div className='pull-right'>
+                 <button id="up" className='btn btn-primary' onClick={(e)=>triggerEvent('up', e.nativeEvent)}  >Jump</button>
             </div>
-            <div className='text-center col-md-12' style={{marginTop:10}}>
-                <div className='col-md-6'> <button id="left" className='btn btn-primary pull-left' onClick={(e)=>triggerEvent('keyleft', e.nativeEvent)} onPointerDown={(e)=>triggerEvent('keyleft', e.nativeEvent)}>Left</button></div> 
-               <div  className='col-md-6'><button id="right" className='btn btn-primary pull-right' onClick={(e)=>{triggerEvent('keyright', e.nativeEvent)}} onPointerDown={(e)=>triggerEvent('keyright', e.nativeEvent)}>Right</button></div>
-                
+            <div className='pull-left' style={{marginTop:10}}> 
+                <button id="left" className='btn btn-primary pull-left' onClick={(e)=>triggerEvent('keyleft', e.nativeEvent)} onPointerDown={(e)=>triggerEvent('keyleft', e.nativeEvent)}>Left</button>
+                <button id="right" className='btn btn-primary pull-right' onClick={(e)=>{triggerEvent('keyright', e.nativeEvent)}} onPointerDown={(e)=>triggerEvent('keyright', e.nativeEvent)}>Right</button>
             </div>
         </div>
 }

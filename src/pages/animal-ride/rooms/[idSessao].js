@@ -35,7 +35,7 @@ function App() {
             if (mode=="versus" && Object.keys(players).length == 4)
             setWaiting(false) 
 
-            if (mode=="single" && Object.keys(players).length == 1)
+            if (mode=="single")
             setWaiting(false) 
         
         },[players, mode])
@@ -103,7 +103,7 @@ function App() {
             // socket.disconnect();
         };
 
-    },[]);
+    },[players]);
 
     const sendPlayerMovement = (player) => {
         socket.emit('playerMovement', player);
