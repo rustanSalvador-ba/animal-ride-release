@@ -48,7 +48,7 @@ export default function AnimalRide () {
   
 
 function sendNewSala(nome) {
-      const socket = io(process.env.SALA_APP_ENDPOINT,{
+      const socket = io(`https://${process.env.SALA_APP_ENDPOINT}`,{
                   transports: ["polling"],
                   withCredentials: true
               });

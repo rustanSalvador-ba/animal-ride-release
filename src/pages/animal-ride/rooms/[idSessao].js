@@ -53,7 +53,7 @@ function App() {
         
         setMode(modo)
         setMainPlayer(param)
-        const socket = io(process.env.SALA_APP_ENDPOINT,{
+        const socket = io(`https://${process.env.SALA_APP_ENDPOINT}`,{
             timeout: 900000,
             transports: ["polling"],
             withCredentials: true

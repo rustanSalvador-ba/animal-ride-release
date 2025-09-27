@@ -8,7 +8,7 @@ let playerName = props.playername;
 let element: Document = props.element
 let idPlayer= props.idPlayer
 let movimentoAtual: String = ""
-    const socket = io(process.env.SALA_APP_ENDPOINT,{
+    const socket = io(`https://${process.env.SALA_APP_ENDPOINT}`,{
                 transports: ["polling"],
                 withCredentials: true
             });
