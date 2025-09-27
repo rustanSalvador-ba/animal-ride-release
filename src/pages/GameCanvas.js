@@ -22,7 +22,7 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
   const [isClient, setIsClient] = useState(false)
   const [idSessao, setIdSessao] = useState("0")
   const [idPlayer, setIdPlayer] = useState(myPlayerId)
-    const socket = io(`https://animal-ride-release-production.up.railway.app`,{
+  const socket = io(`https://animal-ride-release-production.up.railway.app`,{
                 transports: ["polling"],
                 withCredentials: true
             });
@@ -135,9 +135,8 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
         });
 
         document.addEventListener('keyright', (event) => {
-          enviarMovimento("RIGHT")
           me.input.triggerKeyEvent(me.input.KEY.RIGHT, true);
-
+           enviarMovimento("RIGHT")
         });
 
         document.addEventListener('keyrightStop', (event) => {
@@ -296,6 +295,9 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
 
 
     function enviarMovimento(movimentoAtual) {
+      if (idPlayer == null)
+        return;
+      if (!socket.connected) {
       let msg = {
         idPlayer: idPlayer.idPlayer,
         player: param,
@@ -304,6 +306,7 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
 
       socket.emit("playerMovement", JSON.stringify(msg))
     }
+  }
 
     function temRegistro(players, value) {
       let retorno = false
