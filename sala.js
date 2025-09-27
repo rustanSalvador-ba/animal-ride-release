@@ -18,14 +18,14 @@ const cors = require('cors');
 const app = express();
 
 // Permitir qualquer origem no Express
-app.use(cors({ origin: '*' }));
+app.use(cors({ origin: 'https://animal-ride.netlify.app' }));
 
 const server = http.createServer(app);
 
 // Configurar o Socket.IO com CORS corretamente
 const io = new Server(server, {
   cors: {
-    origin: "https://animal-ride.netlify.app", // ou uma lista específica de domínios confiáveis
+    origin: "https://animal-ride.netlify.app", // ou "*" para testes
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true
