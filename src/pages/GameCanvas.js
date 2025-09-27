@@ -21,7 +21,7 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
   const [isClient, setIsClient] = useState(false)
   const [idSessao, setIdSessao] = useState("0")
   const [idPlayer, setIdPlayer] = useState(myPlayerId)
-    const socket = io(`https://${process.env.SALA_APP_ENDPOINT}`,{
+    const socket = io(`https://animal-ride-release-production.up.railway.app`,{
                 transports: ["polling"],
                 withCredentials: true
             });

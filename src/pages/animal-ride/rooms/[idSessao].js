@@ -53,7 +53,7 @@ function App() {
         
         setMode(modo)
         setMainPlayer(param)
-        const socket = io(`https://${process.env.SALA_APP_ENDPOINT}`,{
+        const socket = io("https://animal-ride-release-production.up.railway.app",{
             timeout: 900000,
             transports: ["polling"],
             withCredentials: true
