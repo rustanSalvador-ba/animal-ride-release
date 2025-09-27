@@ -10,7 +10,8 @@ import Sala from '../../Components/Sala'
 import InputRoom from '../../Components/InputRoom'
 import data from "../../salas.json"
 import '../../js/util.js'
-
+import '../../css/Styles.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 export default function AnimalRide () {

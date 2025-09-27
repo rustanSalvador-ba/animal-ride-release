@@ -9,7 +9,8 @@ import DataManifest from '../../manifest';
 import PlayScreen from '../../js/stage/play.js';
 import { PlayerEntity, CoinEntity, EnemyEntity, MultPlayerEntity, EmptyEntity, MultPlayerEntitySnow, MultPlayerEntityNina, MultPlayerEntityTeff, MultPlayerEntityDark } from '../../js/renderables/entities.js';
 import io from 'socket.io-client';
-import dynamic from 'next/dynamic';
+import '../../css/Styles.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
@@ -611,7 +612,7 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
       // Limpeza do MelonJS ao desmontar o componente
       // me.video.destroy();
     };
-  }, [idPlayer, myPlayerId, players, socket]); // Executa apenas uma vez na montagem
+  }, []); // Executa apenas uma vez na montagem
 
   // Atualiza a tela de jogo quando as props 'players' mudam
   useEffect(() => {
@@ -619,7 +620,7 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
       me.state.current().onResetEvent(); // Re-renderiza jogadores
     }
 
-  }, [myPlayerId, players]); // Depende de players e myPlayerId
+  }, []); // Depende de players e myPlayerId
 
   return (isClient &&
     <div>
@@ -654,4 +655,4 @@ function getQueryVariable(variable) {
   }
 }
 
-export default dynamic(() => Promise.resolve(GameCanvas), { ssr: false });
+export default GameCanvas;

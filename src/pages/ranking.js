@@ -1,6 +1,8 @@
 //import ReactDOM from 'react-dom';
 //import jQuery from 'jquery';
 //import login from "../js/util.js"
+import '../../css/Styles.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
 import NavBar from "../../Components/NavBar"
 import Head from "../../Components/Head"
 import Footer from "../../Components/Footer"

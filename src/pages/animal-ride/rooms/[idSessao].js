@@ -5,11 +5,7 @@ import io from 'socket.io-client';
 import GameCanvas from '../../GameCanvas'; // Seu componente MelonJS
 import Aguardando from '../../../../Components/Aguardando';
  // Conecte-se ao seu servidor
-import dynamic from 'next/dynamic';
 
-// const GameCanvas = dynamic(() => import('../../GameCanvas'), {
-//   ssr: false,
-// });
 
 function App() {
     const [players, setPlayers] = useState({});

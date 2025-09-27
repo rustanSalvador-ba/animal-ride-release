@@ -40,3 +40,180 @@ a {
     color-scheme: dark;
   }
 }
+
+footer {
+      padding: 1em;
+      text-align: center;
+      background-color: hsl(182, 84%, 50%);
+      border-color: hsl(182, 84%, 50%);
+      bottom: 0;
+      position: absolute;
+      color: white;
+      width: 100%;
+}
+
+footer h4{
+      height: 10%;
+}
+
+.painel {
+      background-color: hsl(182, 84%, 50%);
+      border-color: hsl(182, 84%, 50%);
+      color: white;
+}
+
+.login_button {
+      background-color:white;
+      border-color:white;
+      color:  hsl(182, 84%, 50%);
+      margin-right: 5%;
+}
+
+.painel_login {
+      background-color: hsl(182, 84%, 50%);
+      border-color: hsl(182, 84%, 50%);
+      border-radius: 5px;
+      margin-top: 5%;
+      color: #f3f3f3;
+      max-width: 460px;
+      
+}
+
+.online {
+      color: hsl(140, 84%, 50%);
+      width: 50%;
+      margin-left: 2%;
+}
+
+.input_text{
+      border-color: hsl(182, 84%, 50%);
+      border-radius: 2px;
+     
+}
+
+.input_label{
+      margin-left: 2%;
+      color: white;
+}
+
+.loader {
+      border: 16px solid #f3f3f3; /* Light grey */
+      border-top: 16px solid #3498db; /* Blue */
+      border-radius: 50%;
+      width: 120px;
+      height: 120px;
+      animation: spin 2s linear infinite;
+      display: none;
+}
+
+li a{
+      opacity: .8;
+      color:white !important;
+     
+}
+
+div a:hover{
+      opacity: 1;
+}
+
+div a{
+      opacity: .8;
+      color: hsl(140, 84%, 50%);
+}
+
+li a:hover{
+      opacity: 1;
+}
+
+.painel_img {
+      opacity: .8;
+      padding: 10 10 10 10;
+      border-color:black;
+      border-radius: 10px;
+      margin-left: 2%;
+}
+
+.painel_img :hover{
+      border-color:black;
+      border-radius: 10px;
+      opacity: 1;
+      background-color:  rgb(0, 255, 255);
+}
+
+.painel_img_dark {
+      opacity: .5;
+      padding: 10 10 10 10;
+      border-radius: 10px;
+      margin-left: 2%;
+      width: 30%;
+      size: 30px;
+      display:inline-flex;
+}
+
+.aguardando {
+       position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+    
+@keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+}
+
+@media screen and (min-width: 600px) {
+      .painel_login {
+            margin-left: 30%;
+      }
+      .input_text{
+            min-width: 440px;
+      }
+
+      img {
+            width: 80%;
+            height: 80%;
+            display:inline-flex;
+      }
+     
+}
+@media screen and (min-width: 360px) {
+      .input_text{
+            max-width: 339px;
+      }
+      img {
+            width: 45px;
+            height: 45px;
+            display:inline-flex;
+      }
+      .painel_img {
+            opacity: .8;
+            padding: 10 10 10 10;
+            border-color:black;
+            border-radius: 10px;
+            margin-left: 2%;
+            width: 30%;
+            display:inline-flex;
+      }
+      .painel_img_dark {
+            opacity: .5;
+            padding: 10 10 10 10;
+            border-radius: 10px;
+            margin-left: 2%;
+            width: 30%;
+            display:inline-flex;
+      }
+}
+
+canvas:nth-of-type(2) {
+      display: flexbox;
+} 
