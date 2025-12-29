@@ -49,8 +49,8 @@ export default function AnimalRide () {
   
 
 function sendNewSala(nome) {
-      const socket = io(`https://animal-ride-release-production.up.railway.app`,{
-                  transports: ["polling"],
+      const socket = io(`https://animal-ride-release.onrender.com/`,{
+                  transports: ["websocket"],
                   withCredentials: true
               });
             
