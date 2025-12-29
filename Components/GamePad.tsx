@@ -8,8 +8,8 @@ let playerName = props.playername;
 let element: Document = props.element
 let idPlayer= props.idPlayer
 let movimentoAtual: String = ""
-    const socket = io(`https://animal-ride-release-production.up.railway.app`,{
-                transports: ["polling"],
+    const socket = io(`https://animal-ride-release.onrender.com/`,{
+                transports: ["websocket"],
                 withCredentials: true
             });
          
