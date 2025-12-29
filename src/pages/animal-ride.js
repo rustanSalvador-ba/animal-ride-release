@@ -24,7 +24,7 @@ export default function AnimalRide () {
   useEffect(() => {
    // window.$ = window.jQuery = require('jquery')
    
-    const socket = io(`https://${window.location.hostname}:3001`);
+    const socket = io(`https://animal-ride-release.onrender.com`);
     socket.on('connect', () => {
     console.log('Conectado ao servidor de jogo');
     })
