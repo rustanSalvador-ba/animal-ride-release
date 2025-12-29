@@ -49,9 +49,11 @@ function App() {
         
         setMode(modo)
         setMainPlayer(param)
-        const socket = io("https://animal-ride-release-production.up.railway.app",{
+     
+       if (modo != "single")
+        const socket = io("https://animal-ride-release.onrender.com",{
             timeout: 900000,
-            transports: ["polling"],
+            transports: ["websocket"],
             withCredentials: true
         });
          
