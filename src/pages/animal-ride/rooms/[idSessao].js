@@ -50,7 +50,7 @@ function App() {
         setMode(modo)
         setMainPlayer(param)
      
-       if (modo != "single")
+     
         const socket = io("https://animal-ride-release.onrender.com",{
             timeout: 900000,
             transports: ["websocket"],
