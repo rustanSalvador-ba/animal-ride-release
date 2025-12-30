@@ -68,7 +68,10 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
     cleanup();
 
     me.device.onReady(() => {
-
+      if (!me.audio.init("wav")) {
+          alert("Sorry but your browser does not support html 5 audio !");
+        return;
+}
       // Clear any existing canvas first
       const existingCanvas = document.querySelector('#screen canvas');
       if (existingCanvas) {
@@ -79,7 +82,7 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
         console.error("Your browser does not support HTML5 canvas.");
         return;
       }
-
+      
 
       me.loader.preload(DataManifest, function () {
         console.log("idPlayer", idPlayer)
@@ -202,10 +205,11 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
         //     });
         // }
 
-
+       
         me.state.set(me.state.PLAY, new PlayScreen());
         me.state.change(me.state.PLAY)
         me.state.transition("start")
+        me.audio.play("start", false)
 
         if (mode == "single") {
           snowIA()

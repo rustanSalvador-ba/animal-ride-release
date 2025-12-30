@@ -24,7 +24,7 @@ export class CoinEntity extends me.Collectable {
     // an object is touched by something (here collected)
     onCollision(response, other) {
         // do something when collected
-
+        me.audio.play("coin", false);
         // make sure it cannot be collected "again"
         this.body.setCollisionMask(me.collision.types.NO_OBJECT);
 
@@ -919,9 +919,12 @@ export class PlayerEntity extends me.Entity {
 
             if (!this.body.jumping && !this.body.falling)
             {
+              
                 // set current vel to the maximum defined value
                 // gravity will then do the rest
                 this.body.force.y = -this.body.maxVel.y
+
+                  me.audio.play("jump", false);
             }
         } else {
             this.body.force.y = 0;
@@ -970,6 +973,7 @@ export class PlayerEntity extends me.Entity {
                 else {
                     // let's flicker in case we touched an enemy
                     this.renderable.flicker(750);
+                     me.audio.play("hit", false);
                 }
                 break;
             // Fall through

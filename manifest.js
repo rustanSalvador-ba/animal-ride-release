@@ -15,8 +15,31 @@ const DataManifest = [
     {name: "topo2", type:"image", src: "/data/img/topo2.bmp"},
     {name: "spinning_coin_gold",  type:"image",	src: "/data/img/sprite/coin/spinning_coin_gold.png"},
     {name: "dark_sprite",  type:"image",	src: "/data/img/sprite/dark/dark.png"},
-    {name: "solo_tiled", type:"image", src: "/data/img/solo_tiled.jpg"}
-   
+    {name: "solo_tiled", type:"image", src: "/data/img/solo_tiled.jpg"},
+   {
+  name: "jump",
+  type: "audio",
+  src: "/data/audio/",
+  channel: 1
+},
+{
+  name: "hit",
+  type: "audio",
+  src: "/data/audio/",
+  channel: 1
+},
+{
+  name: "coin",
+  type: "audio",
+  src: "/data/audio/",
+  channel: 1
+},
+{
+  name: "start",
+  type: "audio",
+  src: ["/data/audio/"],
+  channel: 1
+}
 
   ];
   export default DataManifest;
