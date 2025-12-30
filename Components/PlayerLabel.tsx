@@ -12,7 +12,7 @@ function PlayerLabel(props:any)  {
     switch(name) { 
         case "mainPlayer":
             return (
-                <div className='col-md-3 painel_img' onClick={props.onClick}>
+                <div className='col-md-3' onClick={props.onClick}>
                  <picture>
                   <h6>Nina</h6><br/>
                   <img alt="nina" width={width} height={height} src={nina.src}/>
@@ -21,7 +21,7 @@ function PlayerLabel(props:any)  {
       
         case "mainPlayerTeff":
             return (
-                <div className='col-md-3 painel_img' onClick={props.onClick}>
+                <div className='col-md-3' onClick={props.onClick}>
                   <picture>
                      <h6>Teff</h6><br/>
                   <img alt="Teff" width={width} height={height} src={teff.src}/>
@@ -30,7 +30,7 @@ function PlayerLabel(props:any)  {
        
         case "mainPlayerSnow":
             return (
-                <div className='col-md-3 painel_img' onClick={props.onClick}>
+                <div className='col-md-3' onClick={props.onClick}>
                 <picture>
                   <h6>Snow</h6><br/>
                   <img alt="Snow" width={width} height={height} src={snow.src}/>
@@ -46,10 +46,10 @@ function PlayerLabel(props:any)  {
             </div>)
         default: 
            return (
-            <div className='col-md-3 painel_img'  onClick={props.onClick}>
+            <div className='col-md-3'  onClick={props.onClick}>
                 <picture>
                   <h6>Nina</h6><br/>
-                <img alt="Nina" width={width} height={height} className='col-md-3 painel_img' src={nina.src}/>
+                <img alt="Nina" width={width} height={height} className='col-md-3' src={nina.src}/>
                 </picture> 
             </div>)
     }

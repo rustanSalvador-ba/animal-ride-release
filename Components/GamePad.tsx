@@ -108,15 +108,44 @@ function triggerEvent(type:string, e: MouseEvent) {
     }
 }
 
-  return <div className='col-md-12' style={{bottom:50, position: 'fixed'}}>
-            <div className='pull-right' style={{marginLeft:200}}>
-                 <button id="up" className='btn btn-primary' onClick={(e)=>triggerEvent('up', e.nativeEvent)}  >Jump</button>
-            </div>
-            <div> 
-                <button id="left" className='btn btn-primary' onClick={(e)=>triggerEvent('keyleft', e.nativeEvent)} onPointerDown={(e)=>triggerEvent('keyleft', e.nativeEvent)}>Left</button>&nbsp;&nbsp;&nbsp;
-                <button id="right" className='btn btn-primary' onClick={(e)=>{triggerEvent('keyright', e.nativeEvent)}} onPointerDown={(e)=>triggerEvent('keyright', e.nativeEvent)}>Right</button>
-            </div>
-        </div>
+ return (
+  <div className="gamepad-root">
+
+    {/* Direcional - mão esquerda */}
+    <div className="gamepad-left">
+      <button
+        className="gamepad-btn"
+        onPointerDown={(e)=>triggerEvent('keyleft', e.nativeEvent)}
+        onPointerUp={(e)=>triggerEvent('keyleftStop', e.nativeEvent)}
+        onPointerLeave={(e)=>triggerEvent('keyleftStop', e.nativeEvent)}
+      >
+        ⬅
+      </button>
+
+      <button
+        className="gamepad-btn"
+        onPointerDown={(e)=>triggerEvent('keyright', e.nativeEvent)}
+        onPointerUp={(e)=>triggerEvent('keyrightStop', e.nativeEvent)}
+        onPointerLeave={(e)=>triggerEvent('keyrightStop', e.nativeEvent)}
+      >
+        ➡
+      </button>
+    </div>
+
+    {/* Pulo - mão direita */}
+    <div className="gamepad-right">
+      <button
+        className="gamepad-btn jump-btn"
+        onPointerDown={(e)=>triggerEvent('up', e.nativeEvent)}
+      >
+        ⬆
+      </button>
+    </div>
+
+  </div>
+);
+
+
 }
 
 export default GamePad;

@@ -1,160 +1,147 @@
+import { useState, useEffect } from "react";
+import io from "socket.io-client";
+import NavBar from "../../Components/NavBar";
+import PlayerLabel from "../../Components/PlayerLabel";
+import PlayerCarousel from "../../Components/PlayerCarousel";
+import Mode from "../../Components/Mode";
+import Sala from "../../Components/Sala";
+import InputRoom from "../../Components/InputRoom";
+import Footer from "../../Components/Footer";
+import data from "../../salas.json";
+import "../../css/Styles.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import NavBar from "../../Components/NavBar"
-import Head from "../../Components/Head"
-import PlayerLabel from "../../Components/PlayerLabel"
-import Footer from "../../Components/Footer"
-import Mode from "../../Components/Mode"
-import { useState, useEffect} from 'react'
-import io from 'socket.io-client';
-import Sala from '../../Components/Sala'
-import InputRoom from '../../Components/InputRoom'
-import data from "../../salas.json"
-import '../../js/util.js'
-import '../../css/Styles.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
+export default function AnimalRide() {
+  const [isClient, setIsClient] = useState(false);
+  const [salas, setSalas] = useState(data.salas || []);
+  const [mainPlayer, setMainPlayer] = useState("");
+  const [mode, setMode] = useState("");
+  const [newRoomShow, setNewRoomShow] = useState(false);
+  const [socket, setSocket] = useState(null);
+  const [playerSelectSound, setPlayerSelectSound] = useState(null);
+  const [modeSelectSound, setModeSelectSound] = useState(null);
 
-
-export default function AnimalRide () {
-  const [isClient, setIsClient] = useState(false)
-  const [newRoomShow, setNewRoomShow] = useState("none")
-  const [mainPlayer, setMainPlayer] = useState([])
-  const [mode, setMode] = useState([])
-  const [salas, setSalas] = useState(data.salas)
-
+  // Somente no client
   useEffect(() => {
-   // window.$ = window.jQuery = require('jquery')
-   
-    const socket = io(`https://animal-ride-release.onrender.com`);
-    socket.on('connect', () => {
-    console.log('Conectado ao servidor de jogo');
-    })
-    
-    socket.on('sala', (sala) => {
-      setSalas([...salas, sala])
+    setIsClient(true);
+    setPlayerSelectSound(new Audio("/sounds/player.wav"));
+    setModeSelectSound(new Audio("/sounds/mode.wav"));
+
+    const s = io("https://animal-ride-release.onrender.com", {
+      transports: ["websocket"],
+      withCredentials: true,
     });
 
-  }, [salas]) // Add salas dependency
-  //salasServer = io(`http://${window.location.hostname}:3001`);
- 
- 
- useEffect(() => {
-//  salasServer = io(`http://${window.location.hostname}:3001`);
-//       if (salasServer != null) {
-//         salasServer.on('sala', (sala) => {
-//           setSalas([...salas, sala])
-//         });
-//         console.log(salas)
-//       }
-  }, [])
-  
+    s.on("connect", () => console.log("Conectado ao servidor de jogo"));
+    s.on("sala", (sala) => setSalas((prev) => [...prev, sala]));
 
-function sendNewSala(nome) {
-      const socket = io(`https://animal-ride-release.onrender.com/`,{
-                  transports: ["websocket"],
-                  withCredentials: true
-              });
-            
-    socket.on('connect', () => {
-    console.log('Conectado ao servidor de jogo');
-    })
- const sala = {
-      name: nome
-  } 
-    setSalas([...salas, sala])
- 
- socket.emit("newSala", JSON.stringify(sala))
-  
-}
+    setSocket(s);
 
-function handleClick(name) {
-    setMainPlayer(name)
-}
+    return () => s.disconnect();
+  }, []);
 
-function handleClickMode(name) {
-  console.log(name)
-    setMode(name)
-}
-
-function getName(mainPlayer) {
-
-    if(mainPlayer=="mainPlayer")     return "Nina"
-    if(mainPlayer=="mainPlayerTeff") return "Teff"
-    if(mainPlayer=="mainPlayerSnow") return "Snow"
-    if(mainPlayer=="mainPlayerDark") return "Dark"
-}
-
-function showInputNewRoom() {
-    if (newRoomShow)
-      setNewRoomShow(false)
-    else
-     setNewRoomShow("none")
-}
-
-function getDocument() {
-  if (typeof window === 'undefined'){
-    return null;
-  } else {
-    return window.document;
+  function handlePlayerClick(player) {
+    setMainPlayer(player);
+    if (playerSelectSound) playerSelectSound.play();
   }
-}
 
-function add(e) {
-        let nome = $('#room-name').val()
+  function handleModeClick(selectedMode) {
+    setMode(selectedMode);
+    if (modeSelectSound) modeSelectSound.play();
+  }
 
-        salas.forEach(sala => {
-          if (sala.name === nome || nome === null) 
-            hasName = true
-        }) 
+  function toggleNewRoom() {
+    setNewRoomShow((prev) => !prev);
+  }
 
-        if (!hasName) {
-          sendNewSala(nome)
-        }
+  function sendNewSala(nome) {
+    if (!socket) return;
+    const sala = { name: nome };
+    setSalas((prev) => [...prev, sala]);
+    socket.emit("newSala", JSON.stringify(sala));
+  }
+
+  function addNewRoom() {
+    const nome = document.getElementById("room-name").value;
+    if (!nome) return;
+    const exists = salas.some((s) => s.name === nome);
+    if (!exists) sendNewSala(nome);
+  }
+
+  function getPlayerDisplayName(playerId) {
+    switch (playerId) {
+      case "mainPlayer":
+        return "Nina";
+      case "mainPlayerTeff":
+        return "Teff";
+      case "mainPlayerSnow":
+        return "Snow";
+      case "mainPlayerDark":
+        return "Dark";
+      default:
+        return "";
     }
+  }
 
-  useEffect(() => {
-    setIsClient(true)
+  if (!isClient) return null;
 
-  }, [])
+  return (
+    <div>
+      <NavBar />
 
-    if (!isClient)
-     return(<></>)
-    else
-     return (<div>
-            <NavBar/>
-             <div id='salas'>
-               <span className='pull-left' style={{marginRight:'10px'}}> <h3>Roons On-line</h3></span><span style={{paddingTop:'25px'}} onClick={()=>showInputNewRoom()}  className={newRoomShow ? "glyphicon glyphicon-plus online":"glyphicon glyphicon-minus online"}> </span>
-                
-                <div id='newRoom' style={{display:newRoomShow}}>
-                    <InputRoom  onClick={(e)=>add(e)}></InputRoom>
-                </div> <br></br><br></br>
-                
-               
-                    {
-                        salas.filter(e => e.name!=null)
-                             .map((el) => {
-                            return (<div key={el.id}><Sala name={el.name} href={el.id} player={mainPlayer} mode={mode}></Sala></div>)
-                        })
-                    }
-              </div>
-                <div id="players"  >
-                  <div className='col-md-8'>
-                   <div className='col-md-4'><h4>Selected Mode: {mode}</h4></div>
-                  <div className='col-md-4'><h4>Selected Player: {getName(mainPlayer) } <PlayerLabel id={mainPlayer} name={mainPlayer} onClick={(e)=>{  handleClick({mainPlayer})}}></PlayerLabel>
-                </h4>
-                </div>
-                </div>
-                <br></br><br></br>
-                <h3>Select Mode:</h3>
-                <Mode name="Versus" onClick={(e)=>{ handleClickMode("versus")}}/><br></br>
-                <Mode name="Single" onClick={(e)=>{ handleClickMode("single")}}/>
-                <br></br>
-                <h3>Select Player:</h3>
-                  <PlayerLabel id="mainPlayer" name="mainPlayer" onClick={(e)=>{  handleClick("mainPlayer")}}></PlayerLabel>
-                  <PlayerLabel id="mainPlayerTeff" name="mainPlayerTeff" onClick={(e)=>setMainPlayer("mainPlayerTeff")}></PlayerLabel>
-                  <PlayerLabel id="mainPlayerSnow" name="mainPlayerSnow" onClick={(e)=>setMainPlayer("mainPlayerSnow")}></PlayerLabel>
-                  <PlayerLabel name="mainPlayerDark" onClick={(e)=>setMainPlayer("mainPlayerDark")}></PlayerLabel>
-                </div>
-               <Footer/>
-               </div>)
+      <div id="salas">
+        <h2 style={{ color: "rgb(12, 240, 12)" }}>Enter to play...</h2>
+
+        <div id="newRoom" style={{ display: newRoomShow ? "block" : "none" }}>
+          <InputRoom onClick={addNewRoom} />
+        </div>
+
+        <div className="col-xs-12">
+          {salas.filter(e => e.name != null)
+              .map((el, index) => {
+                  return (<div key={index}>
+                            <Sala name={el.name} href={el.name} player={mainPlayer} mode={mode} selected={true}></Sala>
+                          </div>)
+              })}
+        </div>
+
+        <span
+          onClick={toggleNewRoom}
+          className={newRoomShow ? "glyphicon glyphicon-minus online" : "glyphicon glyphicon-plus online"}
+        ></span>
+      </div>
+
+      <div id="players">
+        <div className="col-md-8">
+          <div
+            className="col-md-4 text-center"
+            style={{ marginRight: "10px", color: "rgb(12, 240, 12)" }}
+          >
+            <h4>Mode: {mode}</h4>
+          </div>
+
+          <div
+            className="col-md-4 text-center"
+            style={{ marginRight: "10px", color: "rgb(12, 240, 12)" }}
+          >
+            <h4>
+              Player: {getPlayerDisplayName(mainPlayer)}
+              <PlayerLabel
+                id={mainPlayer}
+                name={mainPlayer}
+                onClick={() => handlePlayerClick(mainPlayer)}
+              />
+            </h4>
+          </div>
+        </div>
+
+        <Mode name="Versus" onClick={() => handleModeClick("versus")} />
+        <Mode name="Single" onClick={() => handleModeClick("single")} />
+
+        <PlayerCarousel setMainPlayer={handlePlayerClick} />
+      </div>
+
+      <Footer />
+    </div>
+  );
 }
-

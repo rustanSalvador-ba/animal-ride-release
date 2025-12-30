@@ -632,8 +632,10 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
       <Chat id={{ idSessao }} stage={{ me }} playername={{ mainPlayer }} idPlayer={{ idPlayer }}></Chat>
       <div id='container'>
         <div id="screen"></div>
+       
       </div>
-      <GamePad name="" element={getDocument()} idPlayer={{ idPlayer }} playername={{ mainPlayer }} />
+        <GamePad name="" element={getDocument()} idPlayer={{ idPlayer }} playername={{ mainPlayer }} />
+     
       <Footer name="Room" />
     </div>
   )

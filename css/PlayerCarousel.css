@@ -1,0 +1,33 @@
+.player-carousel {
+  display: flex;
+  overflow-x: auto;
+  padding: 20px;
+  gap: 20px;
+  scroll-behavior: smooth;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  cursor: pointer;
+  text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.carousel-item:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px cyan, 0 0 30px cyan;
+}
+
+.carousel-item.selected {
+  transform: scale(1.15);
+  box-shadow: 0 0 20px lime, 0 0 40px lime;
+  border-radius: 15px;
+}
+
+.player-name {
+  display: block;
+  margin-top: 8px;
+  color: #0cf00c;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black;
+}
