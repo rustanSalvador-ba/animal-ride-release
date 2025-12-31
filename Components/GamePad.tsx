@@ -115,18 +115,16 @@ function triggerEvent(type:string, e: MouseEvent) {
     <div className="gamepad-left">
       <button
         className="gamepad-btn"
+        onClick={(e)=>triggerEvent('keyleft', e.nativeEvent)}
         onPointerDown={(e)=>triggerEvent('keyleft', e.nativeEvent)}
-        onPointerUp={(e)=>triggerEvent('keyleftStop', e.nativeEvent)}
-        onPointerLeave={(e)=>triggerEvent('keyleftStop', e.nativeEvent)}
       >
         ⬅
       </button>
 
       <button
         className="gamepad-btn"
+        onClick={(e)=>triggerEvent('keyright', e.nativeEvent)}
         onPointerDown={(e)=>triggerEvent('keyright', e.nativeEvent)}
-        onPointerUp={(e)=>triggerEvent('keyrightStop', e.nativeEvent)}
-        onPointerLeave={(e)=>triggerEvent('keyrightStop', e.nativeEvent)}
       >
         ➡
       </button>
@@ -136,7 +134,7 @@ function triggerEvent(type:string, e: MouseEvent) {
     <div className="gamepad-right">
       <button
         className="gamepad-btn jump-btn"
-        onPointerDown={(e)=>triggerEvent('up', e.nativeEvent)}
+        onClick={(e)=>triggerEvent('up', e.nativeEvent)}
       >
         ⬆
       </button>
