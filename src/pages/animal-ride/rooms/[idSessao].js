@@ -53,7 +53,7 @@ function App() {
      
         const socket = io("https://sala.mastermovel.com.br",{
             timeout: 900000,
-            transports: ["websocket"],
+            transports: ["polling"],
             withCredentials: true
         });
          
