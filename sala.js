@@ -19,7 +19,7 @@ let salas = storage.salas || [];
 const app = express();
 
 app.use(cors({
-  origin: "https://animal-ride.netlify.app",
+  origin: "https://animalride.mastermovel.com.br",
   methods: ["GET", "POST"]
 }));
 
@@ -34,7 +34,7 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "https://animal-ride.netlify.app",
+    origin: "https://animalride.mastermovel.com.br",
     methods: ["GET", "POST"]
   }
 });
