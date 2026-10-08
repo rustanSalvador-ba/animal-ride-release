@@ -33,10 +33,13 @@ app.get("/", (req, res) => {
 const server = http.createServer(app);
 
 const io = new Server(server, {
+  path: "/socket.io",
+  transports: ["polling"],
   cors: {
     origin: "https://animalride.mastermovel.com.br",
-    methods: ["GET", "POST"]
-  }
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
 });
 
 /* ===============================
