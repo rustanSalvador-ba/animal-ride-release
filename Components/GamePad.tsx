@@ -9,7 +9,7 @@ let element: Document = props.element
 let idPlayer= props.idPlayer
 let movimentoAtual: String = ""
     const socket = io(`https://sala.mastermovel.com.br/`,{
-                transports: ["websocket"],
+                transports: ["polling"],
                 withCredentials: true
             });
          
