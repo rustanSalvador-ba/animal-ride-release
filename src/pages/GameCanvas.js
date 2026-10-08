@@ -23,14 +23,11 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
   const [idSessao, setIdSessao] = useState("0")
   const [idPlayer, setIdPlayer] = useState(myPlayerId)
   const socket = io(`https://sala.mastermovel.com.br`,{
+                path: "/socket.io",
+                addTrailingSlash: false,
                 transports: ["polling"],
                 withCredentials: true
             });
-         
-//const socket = fetch('/.netlify/functions/gameServer');
-//const socket = result.json();
-
-
 
   useEffect(() => {
     const playerEntities = ["mainPlayer", "mainPlayerTeff", "mainPlayerSnow", "mainPlayerDark"];
@@ -85,7 +82,6 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
       
 
       me.loader.preload(DataManifest, function () {
-        console.log("idPlayer", idPlayer)
         registerEntities(multiplayerEntities, getMultplayerName(param), MultPlayerEntity, "multPlayerEntity", "MultPlayer" + idPlayer);
         registerEntities(playerEntities, param, PlayerEntity, "playerEntity", idPlayer);
         me.pool.register("CoinEntity", CoinEntity, false);
@@ -194,17 +190,6 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
             enviarMovimento("RIGHT")
 
         });
-
-
-        // if (players != null) {
-        //   Object.keys(players).forEach(key => {
-        //     if (players[key].idPlayer !== idPlayer) {
-        //       me.pool.register(players[key].player, MultPlayerEntity);
-        //     }
-
-        //     });
-        // }
-
        
         me.state.set(me.state.PLAY, new PlayScreen());
         me.state.change(me.state.PLAY)
@@ -242,18 +227,6 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
             }
           }
         });
-
-        // socket.on('currentPlayers', (serverPlayers) => {
-        //   console.log("serverPlayers", serverPlayers)
-        //   Object.keys(serverPlayers).forEach(key => {
-        //       if (serverPlayers[key].idPlayer !== idPlayer) {
-        //         //me.pool.register(serverPlayers[key].player, MultPlayerEntity);
-        //         console.log(serverPlayers[key].player)
-        //       }
-        //   });
-        // });
-
-
       })
     }, []);
 
