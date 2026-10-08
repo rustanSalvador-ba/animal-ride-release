@@ -28,7 +28,7 @@ export default function AnimalRide() {
     setModeSelectSound(new Audio("/sounds/mode.wav"));
 
     const s = io("https://sala.mastermovel.com.br", {
-      transports: ["websocket"],
+      transports: ["polling"],
       withCredentials: true,
     });
 
