@@ -27,7 +27,7 @@ export default function AnimalRide() {
     setPlayerSelectSound(new Audio("/sounds/player.wav"));
     setModeSelectSound(new Audio("/sounds/mode.wav"));
 
-    const s = io("https://animal-ride-release.onrender.com", {
+    const s = io("https://sala.mastermovel.com.br", {
       transports: ["websocket"],
       withCredentials: true,
     });
