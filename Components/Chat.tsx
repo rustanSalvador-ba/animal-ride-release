@@ -17,7 +17,7 @@ export default function Chat(props:any) {
   let spanWidth:number = 1;
  // let cliente = new WebSocket('ws://localhost:4999')
      const socket = io(`https://sala.mastermovel.com.br/`,{
-                 transports: ["websocket"],
+                 transports: ["polling"],
                  withCredentials: true
              });
           
