@@ -28,6 +28,8 @@ export default function AnimalRide() {
     setModeSelectSound(new Audio("/sounds/mode.wav"));
 
     const s = io("https://sala.mastermovel.com.br", {
+      path: "/socket.io",
+      addTrailingSlash: false,
       transports: ["polling"],
       withCredentials: true,
     });
