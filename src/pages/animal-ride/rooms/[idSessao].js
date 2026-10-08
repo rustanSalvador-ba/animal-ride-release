@@ -4,8 +4,6 @@ import { useState, useEffect } from 'react'
 import io from 'socket.io-client';
 import GameCanvas from '../../GameCanvas'; // Seu componente MelonJS
 import Aguardando from '../../../../Components/Aguardando';
- // Conecte-se ao seu servidor
-
 
 function App() {
     const [players, setPlayers] = useState({});
@@ -41,7 +39,6 @@ function App() {
         },[players, mode])
 
     useEffect(() => {
-     //   window.$ = window.jQuery = require('jquery')
         const pathname = window.location.pathname.split("/animal-ride/rooms/")[1];
         setIdSessao(pathname)
         var param = getQueryVariable("player");
@@ -52,7 +49,8 @@ function App() {
      
      
         const socket = io("https://sala.mastermovel.com.br",{
-            timeout: 900000,
+            path: "/socket.io",
+            addTrailingSlash: false,
             transports: ["polling"],
             withCredentials: true
         });
