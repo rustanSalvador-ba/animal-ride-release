@@ -51,7 +51,7 @@ function App() {
         setMainPlayer(param)
      
      
-        const socket = io("https://animal-ride-release.onrender.com",{
+        const socket = io("https://sala.mastermovel.com.br",{
             timeout: 900000,
             transports: ["websocket"],
             withCredentials: true
