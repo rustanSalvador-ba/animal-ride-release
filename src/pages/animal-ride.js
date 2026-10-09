@@ -29,7 +29,7 @@ export default function AnimalRide() {
 
     const s = io("https://sala.mastermovel.com.br", {
       path: "/socket.io",
-      addTrailingSlash: false,
+      addTrailingSlash: true,
       transports: ["polling"],
       withCredentials: true,
     });
