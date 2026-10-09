@@ -24,7 +24,7 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
   const [idPlayer, setIdPlayer] = useState(myPlayerId)
   const socket = io(`https://sala.mastermovel.com.br`,{
                 path: "/socket.io",
-                addTrailingSlash: false,
+                addTrailingSlash: true,
                 transports: ["polling"],
                 withCredentials: true
             });
