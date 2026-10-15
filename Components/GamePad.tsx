@@ -8,10 +8,12 @@ let playerName = props.playername;
 let element: Document = props.element
 let idPlayer= props.idPlayer
 let movimentoAtual: String = ""
-    const socket = io(`https://sala.mastermovel.com.br/`,{
-                transports: ["polling"],
-                withCredentials: true
-            });
+    const socket = io("https://sala.mastermovel.com.br", {
+          path: "/socket.io",
+          addTrailingSlash: true,
+          transports: ["polling"],
+          withCredentials: true,
+        });
          
 function selectEvent(id: string) {
 

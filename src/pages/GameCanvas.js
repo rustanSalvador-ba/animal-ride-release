@@ -23,11 +23,11 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
   const [idSessao, setIdSessao] = useState("0")
   const [idPlayer, setIdPlayer] = useState(myPlayerId)
   const socket = io(`https://sala.mastermovel.com.br`,{
-                path: "/socket.io",
-                addTrailingSlash: true,
-                transports: ["polling"],
-                withCredentials: true
-            });
+      path: "/socket.io",
+      addTrailingSlash: true,
+      transports: ["polling"],
+      withCredentials: true
+  });
 
   useEffect(() => {
     const playerEntities = ["mainPlayer", "mainPlayerTeff", "mainPlayerSnow", "mainPlayerDark"];
@@ -459,13 +459,6 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
           }, 500);
         }
 
-        // if (escolhido === "LEFT") {
-        //   me.input.triggerKeyEvent(me.input.KEY.H, true);
-        //   setTimeout(() => {
-        //     me.input.triggerKeyEvent(me.input.KEY.H, false);
-        //   }, 500);
-        // }
-
         if (escolhido === "RIGHT") {
           me.input.triggerKeyEvent(me.input.KEY.F, true);
           setTimeout(() => {
@@ -496,12 +489,6 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
           }, 500);
         }
 
-        // if (escolhido === "LEFT") {
-        //   me.input.triggerKeyEvent(me.input.KEY.H, true);
-        //   setTimeout(() => {
-        //     me.input.triggerKeyEvent(me.input.KEY.H, false);
-        //   }, 500);
-        // }
 
         if (escolhido === "RIGHT") {
           me.input.triggerKeyEvent(me.input.KEY.B, true);
@@ -533,12 +520,6 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
           }, 500);
         }
 
-        // if (escolhido === "LEFT") {
-        //   me.input.triggerKeyEvent(me.input.KEY.H, true);
-        //   setTimeout(() => {
-        //     me.input.triggerKeyEvent(me.input.KEY.H, false);
-        //   }, 500);
-        // }
 
         if (escolhido === "RIGHT") {
           me.input.triggerKeyEvent(me.input.KEY.Ç, true);
@@ -569,13 +550,6 @@ const GameCanvas = ({ players, myPlayerId, onPlayerMove }) => {
             me.input.triggerKeyEvent(me.input.KEY.U, false);
           }, 500);
         }
-
-        // if (escolhido === "LEFT") {
-        //   me.input.triggerKeyEvent(me.input.KEY.H, true);
-        //   setTimeout(() => {
-        //     me.input.triggerKeyEvent(me.input.KEY.H, false);
-        //   }, 500);
-        // }
 
         if (escolhido === "RIGHT") {
           me.input.triggerKeyEvent(me.input.KEY.M, true);
